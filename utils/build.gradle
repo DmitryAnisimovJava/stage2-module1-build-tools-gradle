@@ -1,5 +1,6 @@
 plugins {
-    // id for library
+	id 'java-library'
+   	id 'maven-publish'
     // id for maven to publish jar to local repository
 }
 
@@ -8,12 +9,18 @@ java {
 }
 
 repositories {
-// provide repository, where required dependencies are located
+	mavenCentral()
+	maven {
+		url "https://mvnrepository.com/artifact/org.apache.commons/commons-lang3"
+	}
 }
 
 publishing {
     publications {
         maven(MavenPublication) {
+        groupId = 'com.util'
+        artifactId = 'library'
+        version = '1.1'
 // provide groupId
 // provide artifactId
 // provide version
@@ -24,6 +31,9 @@ publishing {
 }
 
 //add Apache Apache Commons Lang 3.10 (or higher) dependency
+dependencies {
+	testImplementation('org.apache.commons:commons-lang3:3.13.0')
+}
 
 jar {
     manifest {
